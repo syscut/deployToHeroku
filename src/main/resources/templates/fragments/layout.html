@@ -4,6 +4,7 @@
     <title>Java Getting Started on Heroku</title>
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    
 </head>
 
 <body>
@@ -41,7 +42,7 @@
         </div>
     </nav>
     <div th:replace="${template}"/>
-
+    <script th:src="@{/stylesheets/main.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
