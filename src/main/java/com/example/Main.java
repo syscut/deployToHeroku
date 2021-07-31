@@ -52,6 +52,11 @@ public class Main {
   String index() {
     return "index";
   }
+  
+  @RequestMapping("/js-map")
+  String jsmap() {
+    return "js-map";
+  }
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
