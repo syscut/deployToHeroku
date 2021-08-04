@@ -4,16 +4,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.example</groupId>
-  <artifactId>java-getting-started</artifactId>
+  <artifactId>syscut</artifactId>
   <version>1.0</version>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.3.0.RELEASE</version>
-    <relativePath/>
   </parent>
-  <name>java-getting-started</name>
+  <name>syscut</name>
 
   <properties>
     <java.version>1.8</java.version>
@@ -23,6 +22,11 @@
     <webjars-jquery-ui.version>1.12.1</webjars-jquery-ui.version>
     <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
   </properties>
+
+<!-- spring-boot-starter-web：
+​ spring-boot-starter：spring-boot場景啟動器；幫我們導入了web模塊正常運行所依賴的組件；
+​ Spring Boot將所有的功能場景都抽取出來，做成一個個的starters（啟動器），只需要在項目裡面引入這些 starter
+​ 相關場景的所有依賴都會導入進來。要用什麼功能就導入什麼場景的啟動器 -->
 
   <dependencies>
     <dependency>
@@ -36,6 +40,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+      <!-- thymeleaf 模板 -->
       <exclusions>
       	<exclusion>
       		<groupId>nz.net.ultraq.thymeleaf</groupId>
