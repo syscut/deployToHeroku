@@ -8,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,6 +16,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -26,8 +27,7 @@ public class Main {
 
   @Value("${spring.datasource.url}")
   private String dbUrl;
-  @Value("${test}")
-  private String test;
+ 
   @Autowired
   private DataSource dataSource;
   
@@ -43,11 +43,33 @@ public class Main {
   
   @RequestMapping("/js-map")
   String jsmap(
-		  @RequestParam(name="name", required = false, defaultValue = "")String name,Model model  
+		  @RequestParam(name="today", required = false)String today,Map<String, Object> model  
 		  ) {
-	  model.addAttribute("name",name);
-	  model.addAttribute("account",1000);
-    return "js-map";
+	  if(today==null) {
+		  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		  today = LocalDate.now().format(formatter);
+	  }
+	  model.put("today",today);
+	  
+	  try (Connection connection = dataSource.getConnection()) {
+	      Statement stmt = connection.createStatement();
+	      
+	      ResultSet rs = stmt.executeQuery("SELECT * FROM article");
+
+	      ArrayList<String> output = new ArrayList<String>();
+	      while (rs.next()) {
+	        output.add(String.valueOf(rs.getDate(1)));
+	        output.add(rs.getString(2));
+	        output.add(String.valueOf(rs.getArray(3)));
+	        output.add(rs.getString(4));
+	      }
+
+	      model.put("records", output);
+	      return "js-map";
+	    } catch (Exception e) {
+	      model.put("message", e.getMessage());
+	      return "error";
+	    }
   }
 
   @RequestMapping("/db")
@@ -56,6 +78,7 @@ public class Main {
       Statement stmt = connection.createStatement();
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
       stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+      
       ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 
       ArrayList<String> output = new ArrayList<String>();
