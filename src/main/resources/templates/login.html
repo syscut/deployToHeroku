@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'login')}">
+<body>
+<div class="jumbotron text-center">
+  <div class="container">
+    
+    <h1>果凍的學習筆記</h1>
+    
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+	<h1>登入</h1>
+     <form action="#" th:action="@{/login}" th:object="${doLogin}" method="post">
+    	<p>帳號: <input type="text" th:field="*{id}" /></p>
+        <p>密碼: <input type="password" th:field="*{pd}" /></p>
+        <p th:if="${msg}" th:text="${msg}"></p>
+        
+        <p><input type="submit" value="登入" /> <input type="reset" value="重新輸入" /></p>
+        
+     </form> 
+    </div>
+  </div>
+</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

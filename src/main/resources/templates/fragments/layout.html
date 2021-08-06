@@ -2,6 +2,9 @@
 <html th:fragment="layout (template, menu)">
 <head>
     <title>果凍的學習筆記</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/error.css" />
@@ -11,7 +14,7 @@
     <nav class="navbar navbar-default navbar-static-top navbar-inverse">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li class="">
                     <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </li>
                 <li class="dropdown">
@@ -36,7 +39,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-right">
-                    <a href="#"><span class="glyphicon glyphicon-book"></span> 開發手冊</a>
+                    <a href="/doLogin" ><span class="glyphicon glyphicon-search"></span> <b th:text="${id}">登入</b></a>
                 </li>
             </ul>
         </div>
