@@ -39,13 +39,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-right">
-                    <a href="/doLogin" ><span class="glyphicon glyphicon-search"></span> <b th:text="${id}">登入</b></a>
+                    <a href="/login" ><span class="glyphicon glyphicon-search"></span> <b th:if="${user != ''}" th:text="${user}">登入</b></a>
                 </li>
             </ul>
         </div>
     </nav>
     <div th:replace="${template}"/>
-    <script th:src="@{https://unpkg.com/sweetalert/dist/sweetalert.min.js}"></script>
+    <script th:src="@{/webjars/sweetalert/sweetalert.min.js}"></script>
     <script th:src="@{/scripts/main.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>

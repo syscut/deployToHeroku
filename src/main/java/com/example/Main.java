@@ -10,14 +10,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.sql.DataSource;
-import javax.validation.Valid;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -50,37 +52,33 @@ public class Main {
     return "index";
   }
   
-  @GetMapping("/doLogin")
-  String doLoginForm(DoLogin doLogin,Model model) {
-    
-    return "login";
-  }
-  
-  @PostMapping("/login")
-  String doLoginValid(@Valid DoLogin doLogin,BindingResult bindingResult,
-		              @ModelAttribute DoLogin ok,Model model) {
+  @RequestMapping("/login")
+  String doLoginValid(@Validated DoLogin doLogin,BindingResult bindingResult,Model model) {
 	  if(bindingResult.hasErrors()) {
-		  model.addAttribute("msg","帳號長度5-20\n\r密碼開頭大小寫英文，至少6個英數字");
+		  model.addAttribute("msg","帳號長度5-20，密碼開頭大小寫英文，至少6個英數字");
 			return "login";
 		}
-	  model.addAttribute("id", ok.getId());
+	  model.addAttribute("user", "歡迎"+doLogin.getId());
 	  return "index";
   }
   
-  @GetMapping("/newarticle")
-  String newArticle(NewArticle newarticle,Model model) {
+  @RequestMapping("/newarticle")
+  String article(Model model) {
+	  model.addAttribute("newarticle",new NewArticle());
 	  model.addAttribute("today",LocalDate.now().format(formatter));
-    return "new";
+	  return "new";
   }
   
-  @PostMapping("/new")
-  String article(@ModelAttribute NewArticle article,Model model) {
-	  if(article.getTitle()=="") {
-		  model.addAttribute("msg","標題空白");
-			return "new";
-		}
-	  
-	  return "index";
+  @PostMapping("/addarticle")
+  @ResponseBody
+  String add(NewArticle newarticle,Model model) {
+	  try(Connection connection = dataSource.getConnection()){
+      Statement stmt = connection.createStatement();
+	  stmt.executeUpdate("insert into article values ('"+LocalDate.now()+"','"+newarticle.getTitle()+"','{"+newarticle.getTags()+"}','"+newarticle.getContent()+"');");
+	  }catch (Exception e) {
+	      return newarticle.getDate()+newarticle.getContent()+newarticle.getTags()+newarticle.getTitle();
+	    }
+	  return "/";
   }
 
   @RequestMapping("/js-map")
