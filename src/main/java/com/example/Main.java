@@ -70,7 +70,6 @@ public class Main {
   }
   
   @PostMapping("/addarticle")
-  @ResponseBody
   String add(NewArticle newarticle,Model model) {
 	  try(Connection connection = dataSource.getConnection()){
       Statement stmt = connection.createStatement();
@@ -78,7 +77,7 @@ public class Main {
 	  }catch (Exception e) {
 	      return newarticle.getDate()+newarticle.getContent()+newarticle.getTags()+newarticle.getTitle();
 	    }
-	  return "/";
+	  return "index";
   }
 
   @RequestMapping("/js-map")
