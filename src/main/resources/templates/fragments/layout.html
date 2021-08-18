@@ -1,28 +1,29 @@
 <!doctype html>
-<html th:fragment="layout (template, menu)">
+<html xmlns:th="https://www.thymeleaf.org">
+<!-- http://www.thymeleaf.org Thymeleaf模板引擎 -->
 <head>
-    <title>果凍的學習筆記</title>
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/error.css" />
 </head>
-
 <body>
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+<div th:fragment="layout">
+    <nav class="navbar navbar-expand-sm navbar-inverse">
         <div class="container">
             <ul class="nav navbar-nav">
                 <li class="">
                     <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 關於我 <span class="caret"></span></a>
+                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 關於我 <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="https://github.com/syscut"><img src="/g-logo.png">我的github</a></li>
                         <li><a href="https://www.facebook.com/kim23362611/"><img src="/f-logo.png">我的Facebook</a></li>
                     </ul>
                 </li>
+             </ul>
+             <ul class="nav navbar-nav">   
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> 文章分類 <span class="caret"></span></a>
+                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> 文章分類 <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/error.html">JavaScript</a></li>
                         <li><a href="/error.html">Cascading Stylesheets(CSS)</a></li>
@@ -36,15 +37,11 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-right">
-                    <a href="/login" ><span class="glyphicon glyphicon-search"></span> <b th:if="${user != ''}" th:text="${user}">登入</b></a>
+                    <a href="/login" ><span class="glyphicon glyphicon-search"></span> <b>登入</b></a>
                 </li>
             </ul>
         </div>
     </nav>
-    <div th:replace="${template}"/>
-    <script th:src="@{/webjars/sweetalert/sweetalert.min.js}"></script>
-    <script th:src="@{/scripts/main.js}"></script>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </div>
 </body>
+</html>

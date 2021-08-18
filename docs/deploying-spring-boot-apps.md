@@ -8,9 +8,6 @@ Rundoc.configure do |config|
 end
 ```
 <!--
-  rundoc src:
-  https://github.com/heroku/java-getting-started/blob/main/deploying-spring-boot-apps.md
-
   Command:
   $ rundoc build --path deploying-spring-boot-apps.md
 -->
