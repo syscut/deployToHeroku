@@ -28,6 +28,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -48,17 +50,33 @@ public class Main {
   }
 
   @RequestMapping("/")
-  String index() {
-    return "index";
-  }
+  String index(Model model) {
+	    try (Connection connection = dataSource.getConnection()) {
+	      Statement stmt = connection.createStatement();
+	      
+	      ResultSet rs = stmt.executeQuery("select date,title from article");
+	      ArrayList<String> date = new ArrayList<String>();
+	      ArrayList<String> title = new ArrayList<String>();
+
+	      while (rs.next()) {
+	    	  date.add(String.valueOf(rs.getDate(1)));
+	    	  title.add(rs.getString(2));
+	      }
+
+	      List<ArrayList<String>> data = Arrays.asList(date,title);
+	      model.addAttribute("data", data);
+	      return "index";
+	    } catch (Exception e) {
+	    	model.addAttribute("message", e.getMessage());
+	      return "error";
+	    }
+	  }
   
   @RequestMapping("/login")
   String doLoginValid(@Validated DoLogin doLogin,BindingResult bindingResult,Model model) {
 	  if(bindingResult.hasErrors()) {
-		  model.addAttribute("msg","帳號長度5-20，密碼開頭大小寫英文，至少6個英數字");
 			return "login";
 		}
-	  model.addAttribute("user", "歡迎"+doLogin.getId());
 	  return "index";
   }
   

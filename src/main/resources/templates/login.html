@@ -16,7 +16,7 @@
      <form action="#" th:action="@{/login}" th:object="${doLogin}" method="post">
     	<p>帳號: <input type="text" th:field="*{id}" /></p>
         <p>密碼: <input type="password" th:field="*{pd}" /></p>
-        <p th:if="${msg}" th:text="${msg}"></p>
+        <p>帳號長度5-20，密碼開頭大小寫英文，至少6個英數字</p>
         
         <p><input type="submit" value="登入" /> <input type="reset" value="重新輸入" /></p>
         

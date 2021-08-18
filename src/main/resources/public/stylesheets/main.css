@@ -19,7 +19,7 @@ li img{
     margin: 0;
 }
 .navbar-right{
-	margin-right: 15px;
+	float: right;
 }
 .navbar{
   position:fixed;
