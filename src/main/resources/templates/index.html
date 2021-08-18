@@ -1,19 +1,13 @@
 <!DOCTYPE html>
-<html>
-<title>果凍的學習筆記</title>
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/error.css" />
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'index')}">
+
 <body>
-<div class="relative">
-<div th:replace="~{fragments/layout :: layout}"></div>
 <div class="jumbotron text-center">
   <div class="container">
      
     <h1>果凍的學習筆記</h1>
     
   </div>
-</div>
 </div>
 <div class="container">
   <div class="row">
@@ -42,10 +36,5 @@
   </div>
    <div th:replace="~{fragments/footer :: footer}"></div>
 </div>
-    <script th:src="@{/webjars/sweetalert/sweetalert.min.js}"></script>
-    <script th:src="@{/scripts/main.js}"></script>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

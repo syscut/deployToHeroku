@@ -1,10 +1,14 @@
 <!doctype html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" th:fragment="layout (template, menu)">
 <!-- http://www.thymeleaf.org Thymeleaf模板引擎 -->
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>果凍的學習筆記</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/error.css" />
 </head>
 <body>
-<div th:fragment="layout">
     <nav class="navbar navbar-expand-sm navbar-inverse">
         <div class="container">
             <ul class="nav navbar-nav">
@@ -42,6 +46,11 @@
             </ul>
         </div>
     </nav>
-    </div>
+    <div th:replace="${template}"/>
+    <script th:src="@{/webjars/sweetalert/sweetalert.min.js}"></script>
+    <script th:src="@{/scripts/main.js}"></script>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
