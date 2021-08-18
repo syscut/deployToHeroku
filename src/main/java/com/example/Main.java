@@ -50,24 +50,23 @@ public class Main {
   }
 
   @RequestMapping("/")
-  String index(Model model) {
+  String index(Map<String,Object> model) {
 	    try (Connection connection = dataSource.getConnection()) {
 	      Statement stmt = connection.createStatement();
 	      
 	      ResultSet rs = stmt.executeQuery("select date,title from article");
-	      ArrayList<String> date = new ArrayList<String>();
+	      ArrayList<String> href = new ArrayList<String>();
 	      ArrayList<String> title = new ArrayList<String>();
 
 	      while (rs.next()) {
-	    	  date.add(String.valueOf(rs.getDate(1)));
-	    	  title.add(rs.getString(2));
+	    	  href.add("/js-map?date="+String.valueOf(rs.getDate(1))+"&title="+rs.getString(2));
+	    	  title.add(String.valueOf(rs.getDate(1)).replaceAll("-", "/")+"-"+rs.getString(2));
 	      }
-
-	      List<ArrayList<String>> data = Arrays.asList(date,title);
-	      model.addAttribute("data", data);
+	      model.put("href", href);
+	      model.put("title", title);
 	      return "index";
 	    } catch (Exception e) {
-	    	model.addAttribute("message", e.getMessage());
+	    	model.put("message", e.getMessage());
 	      return "error";
 	    }
 	  }
