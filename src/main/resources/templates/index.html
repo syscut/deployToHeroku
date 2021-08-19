@@ -21,7 +21,7 @@
     </div>
     <div class="col-xs-6" >
       <h3><span class="glyphicon glyphicon-book"></span> 文章列表</h3>
-      <ul th:each="t,s: ${href}">
+      <ul th:each="t: ${href}">
        <li><a th:href="@{${t}}" th:text="${t}"></a></li>
        
       </ul>

@@ -40,11 +40,6 @@ public class Main {
   @Autowired
   private DataSource dataSource;
   
-  @Autowired
-  public Main(ArticleService articleService) {
-      this.articleService = articleService;
-  }
-
   
   public static void main(String[] args) throws Exception {
 	  //啟動Spring
@@ -52,32 +47,33 @@ public class Main {
   }
   
   @RequestMapping("/")
-  String index(Model model) {
-	  model.addAttribute("href",articleService.articleList());
-	  
-	  return "index";
-//	    try (Connection connection = dataSource.getConnection()) {
-//	      Statement stmt = connection.createStatement();
-//	      
-//	      ResultSet rs = stmt.executeQuery("select date,title from article");
-//	      //ArrayList<String> href = new ArrayList<String>();
-//	      //ArrayList<String> title = new ArrayList<String>();
-//          StringBuffer sb = new StringBuffer();
-//          sb.append("[");
-//	      while (rs.next()) {
-//	    	  //href.add("/js-map?date="+String.valueOf(rs.getDate(1))+"&title="+rs.getString(2));
-//	    	  //title.add(String.valueOf(rs.getDate(1)).replaceAll("-", "/")+"-"+rs.getString(2));
-//	    	  sb.append("{\"date\":\""+String.valueOf(rs.getDate(1)).replaceAll("-", "/")+"\",\"title\":\""+rs.getString(2)+"\"},");
-//	      }
-//	      sb.deleteCharAt(sb.length()-1);
-//	      sb.append("]");
-//	      model.put("href", sb);
-//	      //model.put("title", title);
-//	      return "index";
-//	    } catch (Exception e) {
-//	    	model.put("message", e.getMessage());
-//	      return "error";
-//	    }
+  String index(Map<String,Object> model){
+//  String index(Model model) {
+//	  model.addAttribute("href",articleService.articleList());
+//	  
+//	  return "index";
+	    try (Connection connection = dataSource.getConnection()) {
+	      Statement stmt = connection.createStatement();
+	      
+	      ResultSet rs = stmt.executeQuery("select date,title from article");
+	      ArrayList<String> href = new ArrayList<String>();
+	      //ArrayList<String> title = new ArrayList<String>();
+          //StringBuffer sb = new StringBuffer();
+          //sb.append("[");
+	      while (rs.next()) {
+	    	  href.add("/js-map?date="+String.valueOf(rs.getDate(1))+"&title="+rs.getString(2));
+	    	  //title.add(String.valueOf(rs.getDate(1)).replaceAll("-", "/")+"-"+rs.getString(2));
+	    	  //sb.append("{\"date\":\""+String.valueOf(rs.getDate(1)).replaceAll("-", "/")+"\",\"title\":\""+rs.getString(2)+"\"},");
+	      }
+	      //sb.deleteCharAt(sb.length()-1);
+	      //sb.append("]");
+	      //model.put("href", sb);
+	      model.put("href", href);
+	      return "index";
+	    } catch (Exception e) {
+	    	model.put("message", e.getMessage());
+	      return "error";
+	    }
 	  }
   
   @RequestMapping("/login")
