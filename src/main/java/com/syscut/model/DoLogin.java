@@ -1,4 +1,4 @@
-package com.example;
+package com.syscut.model;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
