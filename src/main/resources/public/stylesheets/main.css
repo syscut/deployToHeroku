@@ -25,6 +25,7 @@ li img{
 }
 .navbar-right{
 	float: right;
+	margin-right:5px;
 }
 .navbar{
   position:fixed;
