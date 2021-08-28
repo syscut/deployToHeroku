@@ -15,14 +15,13 @@
       <h3><span class="glyphicon glyphicon-info-sign"></span> 開發日誌</h3>
       <ul>
         <li>2021/07/31網站上線</li>
-        <li><a href="/js-map?date=2021-08-05&title=測試">測試讀取資料庫文章</a></li>
         <li><a href="/db">DBTest</a></li>
       </ul>
     </div>
     <div class="col-xs-6" >
       <h3><span class="glyphicon glyphicon-book"></span> 文章列表</h3>
       <ul th:each="t: ${href}">
-       <li><a th:href="@{${t}}" th:text="${t}"></a></li>
+       <li><a th:href="@{/js-map?id={id}(id=${t.id})}" >日期：<span th:text="${t.date}"></span>&emsp;標題：<span th:text="${t.title}"></span></a></li>
        
       </ul>
     </div>

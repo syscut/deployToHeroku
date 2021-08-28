@@ -9,11 +9,12 @@
   </div>
  <div class="container">
   <div class="row">
-    <div class="col-md-6">
-  <h3 class="glyphicon glyphicon-calendar" th:text=" ${article[0]}"></h3>
-  <h3 th:text="${article[1]}"></h3>
-  <p th:text="${article[2]}"></p>
-    <article th:text="${article[3]}"></article>
+    <div class="col-md-6" th:each="article: ${article}">
+  <h3 class="glyphicon glyphicon-calendar" th:text="${article.date}"></h3>
+  <h3 th:text="${article.title}"></h3>
+  <p ></p>
+  <span>標籤：<span th:text="${tag}"></span></span>
+    <article th:text="${article.content}"></article>
   </div>
   </div>
  </div>

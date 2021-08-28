@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col">
 	<h1></h1>
-     <form action="#" th:action="@{/addarticle}" th:object="${newarticle}" method="post">
+     <form action="#" th:action="@{/addarticle}" th:object="${article}" method="post">
     	<fieldset><h3 class="glyphicon glyphicon-calendar" th:text=" ${today}"></h3>
     	<p>文章標題: <input type="text" th:field="*{title}"/></p>
     	<p>文章內容: </p><textarea rows="20" cols="100" th:field="*{content}"></textarea>
