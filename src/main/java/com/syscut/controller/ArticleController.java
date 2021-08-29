@@ -42,8 +42,8 @@ public class ArticleController {
 //		  }
 //		  model.put("today",today);
 		  List<Article> l = articleService.getArticleById(id);
-		  String t = Arrays.toString(l.get(0).getTags());
-		  t = t.replace("[", "").replace("]", "").replace(",", "、");
+		  List<String> t = Arrays.asList(l.get(0).getTags());
+		  //t = t.replace("[", "").replace("]", "").replace(",", "、");
 		  
 		  model.addAttribute("article",l);
 		  model.addAttribute("tag",t);
