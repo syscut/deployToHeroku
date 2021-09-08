@@ -1,42 +1,30 @@
-.jumbotron {
-  background: #532F8C;
-  color: white;
-  padding-top: 45px;
-  padding-bottom: 10px;
-  margin-bottom: 0px;
-  }
-.container-custom{
-  padding-right: 5px;
-  padding-left: 5px;
-  margin-right: auto;
-  margin-left: auto;
-}
-code{
+copy{
   cursor: pointer;
+}
+copy:hover{
+  color:lightgray
 }
 li img{
   width: auto;
   height: 15px;
   margin-right: 5px;
 }
-.navbar-nav {
-    float: left;
-    margin: 0;
-}
-.navbar-right{
-	float: right;
-	margin-right:5px;
-}
 .navbar{
   position:fixed;
   width:-webkit-fill-available;
-  min-height: 40px;
-  
 }
-pre{
+article{
   white-space: pre-wrap;
-  word-break: keep-all;
+  word-break: break-word;
   font-size: 18px;
 }
-
-
+.pt-6{
+	padding-top:80px;
+}
+.text-decoration-none:hover{
+   color:#00c1ff;
+   text-decoration: underline !important;
+}
+a{
+	color:#73ddff;
+}

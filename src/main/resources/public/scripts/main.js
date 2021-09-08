@@ -1,4 +1,4 @@
-const code = document.querySelector("code");
+const code = document.querySelector("copy");
 
 code.onclick = function() {
   document.execCommand("copy");
@@ -12,7 +12,7 @@ code.addEventListener("copy", function(event) {
 	icon:'success',
 	title:'E-mail已複製',
 	text:event.clipboardData.getData("text"),
-	timer:1500,
+	timer:1000,
 	button: [],
         });
   }

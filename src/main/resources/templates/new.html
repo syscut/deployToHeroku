@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'js-map')}">
-<body>
-<div class="jumbotron text-center">
-  <div class="container">
-    <h1>果凍的學習筆記</h1>
-    <h2 th:text="新增文章"></h2>
-  </div>
-  </div>
- <div class="container">
+<body class="bg-dark text-white">
+ <div class="container pt-6">
+ <form action="#" th:action="@{/addarticle}" th:object="${article}" method="post">
   <div class="row">
-    <div class="col">
-	<h1></h1>
-     <form action="#" th:action="@{/addarticle}" th:object="${article}" method="post">
-    	<fieldset><h3 class="glyphicon glyphicon-calendar" th:text=" ${today}"></h3>
-    	<p>文章標題: <input type="text" th:field="*{title}"/></p>
-    	<p>文章內容: </p><textarea rows="20" cols="100" th:field="*{content}"></textarea>
-        <p>Tags: <input type="text" th:field="*{tags}" /></p>
-        <p th:if="${#fields.hasErrors('title')}" th:text="${msg}"></p>
-        </fieldset>
-        <p><input type="submit" value="送出" /></p>
-        
+    <div class="col-12">
+	<h1>新增</h1>
+	<p></p>
+   	<h3 th:text="${today}"></h3>
+   	<p></p>
+   	<label class="form-label">標題：</label>
+   	<input class="form-control w-50" type="text" th:field="*{title}"/>
+   	<p></p>
+   	<label class="form-label">內容：</label>
+   	<textarea class="form-control" rows="50" th:field="*{content}"></textarea>
+   	<p></p>
+   	<label class="form-label">Tags：(標籤之間用逗號,隔開)</label>
+       <input class="form-control w-50" type="text" th:field="*{tags}" />
+       </div>
+       </div>
+       <p th:if="${#fields.hasErrors('title')}" th:text="${msg}"></p>
+       <div class="row justify-content-center pt-4 pb-4">
+       <div class="col-6">
+       <input type="submit" class="btn btn-success col-12" value="送出" />
+       </div>
+       </div>
      </form> 
-    </div>
-  </div>
-</div>
  <div th:replace="~{fragments/footer :: footer}"></div>
+ </div>
 </body>
 </html>

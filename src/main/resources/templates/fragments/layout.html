@@ -6,47 +6,52 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>果凍的學習筆記</title>
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/error.css" />
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
-        <div class="container-custom">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+       <div class="container-fluid">
+        <a class="navbar-brand" href="/">果凍的學習筆記</a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
             <ul class="nav navbar-nav">
-                <li class="">
-                    <a href="/"><span class="glyphicon glyphicon-home"></span></a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 關於我 <span class="caret"></span></a>
+                <li class="nav-item dropdown">
+                    <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 關於我</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="https://github.com/syscut"><img src="/g-logo.png">我的github</a></li>
-                        <li><a href="https://www.facebook.com/kim23362611/"><img src="/f-logo.png">我的Facebook</a></li>
+                        <li><a class="dropdown-item" href="https://github.com/syscut"><img src="/g-logo.png">我的github</a></li>
+                        <li><a class="dropdown-item" href="https://www.facebook.com/kim23362611/"><img src="/f-logo.png">我的Facebook</a></li>
                     </ul>
                 </li>
              </ul>
-             <ul class="nav navbar-nav">   
-                <li class="dropdown">
-                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> 文章分類 <span class="caret"></span></a>
+             <ul class="nav navbar-nav me-auto">   
+                <li class="nav-item dropdown">
+                    <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> 文章分類</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="/error.html">JavaScript</a></li>
-                        <li><a href="/error.html">Cascading Stylesheets(CSS)</a></li>
-                        <li><a href="/error.html">Java</a></li>
-                        <li><a href="https://dotblogs.com.tw/zjh/2018/09/20/maven_3">Maven新手教學</a></li>
-                        <li><a href="/error.html">建構中...</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">建構中...</a></li>
+                        <li><a class="dropdown-item" href="/error.html">JavaScript</a></li>
+                        <li><a class="dropdown-item" href="/error.html">Cascading Stylesheets(CSS)</a></li>
+                        <li><a class="dropdown-item" href="/error.html">Java</a></li>
+                        <li><a class="dropdown-item" href="https://dotblogs.com.tw/zjh/2018/09/20/maven_3">Maven新手教學</a></li>
+                        <li><a class="dropdown-item" href="/error.html">建構中...</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">建構中...</a></li>
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-right">
-                    <a href="/login" ><span class="glyphicon glyphicon-search"></span> <b>登入</b></a>
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="/login" class="nav-link"><nobr>登入</nobr></a>
                 </li>
             </ul>
-        </div>
+             <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="搜尋" aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit"><nobr>搜尋</nobr></button>
+      </form>
+          </div>
+       </div>
     </nav>
     <div th:replace="${template}"/>
     <script th:src="@{/webjars/sweetalert/sweetalert.min.js}"></script>
