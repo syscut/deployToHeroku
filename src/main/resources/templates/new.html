@@ -5,6 +5,23 @@
  <form action="#" th:action="@{/addarticle}" th:object="${article}" method="post">
   <div class="row">
     <div class="col-12">
+    <div class="btn-group position-fixed" role="group">
+    <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      插入標籤
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+  <li><samp class="dropdown-item btn" >&lt;copyborad&gt;</samp></li>
+  <li><samp class="dropdown-item btn" >&lt;code&gt;</samp></li>
+  <li><samp class="dropdown-item btn" >&lt;kbd&gt;</samp></li>
+  <li><samp class="dropdown-item btn" >&lt;var&gt;</samp></li>
+  <li><samp class="dropdown-item btn" >&lt;samp&gt;</samp></li>
+  <li><samp class="dropdown-item btn" >&lt;details&gt;</samp></li>
+  <li><samp class="dropdown-item btn" >&lt;img&gt;</samp></li>
+  <li><samp class="dropdown-item btn" >&amp;lt;&amp;gt;</samp></li>
+  </ul>
+  </div>
+    </div>
 	<h1>新增</h1>
 	<p></p>
    	<h3 th:text="${today}"></h3>

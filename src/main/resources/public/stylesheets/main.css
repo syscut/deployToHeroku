@@ -4,27 +4,72 @@ copy{
 copy:hover{
   color:lightgray
 }
-li img{
+li img{/*導覽列的圖示*/
   width: auto;
   height: 15px;
   margin-right: 5px;
 }
-.navbar{
+.navbar{/*導覽列頂端凍結*/
   position:fixed;
   width:-webkit-fill-available;
+  z-index:999;
 }
-article{
+article{/*保留文章空白 段落方式 調整大小*/
   white-space: pre-wrap;
   word-break: break-word;
   font-size: 18px;
 }
-.pt-6{
+.pt-6{/*新增pt-6為導覽列頂端的間距*/
 	padding-top:80px;
 }
-.text-decoration-none:hover{
+.text-decoration-none:hover{/*超連結hover變色 顯示底線*/
    color:#00c1ff;
    text-decoration: underline !important;
 }
-a{
+a{/*超連結顏色*/
 	color:#73ddff;
+}
+details{/*文章中下拉式選單不受article影響*/
+	white-space: initial;
+}
+kbd{/*按鍵標籤顏色反轉*/
+	color: black;
+    background-color: white;
+}
+.copyborad {
+    position: relative;
+    background-color: #474747;
+    border-radius: 5px;
+    left: 20px;
+    width: fit-content;
+    padding: 20px;
+    padding-top: 0px;
+    display: inline-flex;
+}
+.copybtn {
+    position: absolute;
+    top:  .65rem;;
+    right: .65rem;
+    z-index: 10;
+    display: block;
+    padding: .25rem .5rem;
+    font-size: .65em;
+    color: #0d6efd;
+    background-color: #fff;
+    border: 1px solid;
+    border-radius: .25rem;
+}
+code{
+	margin-left: 20px
+}
+.copyboard:hover,.copyboard:focus{
+	color:#fff;background-color:#0d6efd
+	}
+.position-fixed{
+	position:fixed;
+	    right: 12px;
+}
+article img{
+	width:700px;
+	height:auto;
 }

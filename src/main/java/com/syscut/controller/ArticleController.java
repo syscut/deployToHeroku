@@ -43,7 +43,7 @@ public class ArticleController {
 //		  model.put("today",today);
 		  List<Article> l = articleService.getArticleById(id);
 		  List<String> t = Arrays.asList(l.get(0).getTags());
-		  //t = t.replace("[", "").replace("]", "").replace(",", "、");
+		  //t = t.replace("[", "").replace("]", "").replace(",", "��");
 		  
 		  model.addAttribute("article",l);
 		  model.addAttribute("tag",t);
@@ -58,11 +58,11 @@ public class ArticleController {
 	  }  
 	
 	@PostMapping("addarticle")
-	public String insertarticle(Article article) {
+	public String insertarticle(Article article,Model model) {
 		  article.setDate(LocalDate.now());
 		  
 		  articleService.insert(article);
-		  
+		  model.addAttribute("href",articleService.getAllArticle());
 		  return "index";
 	  }
 	
