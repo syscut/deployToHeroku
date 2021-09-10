@@ -36,7 +36,7 @@ kbd{/*按鍵標籤顏色反轉*/
 	color: black;
     background-color: white;
 }
-.copyborad {
+.copyborad {/*複製區域 有複製按鈕*/
     position: relative;
     background-color: #474747;
     border-radius: 5px;
@@ -58,16 +58,16 @@ kbd{/*按鍵標籤顏色反轉*/
     border: 1px solid;
     border-radius: .25rem;
 }
+.copybtn:hover{
+	color:white;
+	background-color:#0d6efd;
+}
 code{
 	color: #ffda69;
 }
 .copyboard:hover,.copyboard:focus{
 	color:#fff;background-color:#0d6efd
 	}
-.position-fixed{
-	position:fixed;
-	    right: 12px;
-}
 article img{
 	width:700px;
 	height:auto;

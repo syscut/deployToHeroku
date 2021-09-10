@@ -24,7 +24,7 @@ if(content){
 }
 const tag_map = tag =>{
   const tags = {
-    '<copyborad>':'<div class="copyborad">\n<button type="button" class="copybtn">Copy</button>\n\n</div>',
+    '<copyborad>':'<div class="copyborad">\n<button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製程式碼">Copy</button>\n\n</div>',
     '<code>':'<code>\n\n</code>',
     '<kbd>':'<kbd>\n\n</kbd>',
     '<var>':'<var>\n\n</var>',
@@ -35,6 +35,12 @@ const tag_map = tag =>{
   };
   return tags[tag];
 }
+
+let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+});
+
 $(document).ready(()=>{
   $('samp[class^=dropdown-item]').click((t)=>{
     let cursorPos = $('textarea').prop('selectionStart');
@@ -44,5 +50,22 @@ $(document).ready(()=>{
 
     $('textarea').val(textBefore+'\n'+tag_map(t.target.innerText)+'\n'+textAfter);
     
-  })
+  });
+
+  $('.copybtn').click((c)=>{
+    const range = document.createRange();
+    let copybtn = c.target;
+    range.selectNode(copybtn.nextElementSibling);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    
+    window.setTimeout(()=>{$(copybtn).attr('data-bs-original-title', '已複製').tooltip('show')},400);
+    window.setTimeout(()=>{
+      $(copybtn).tooltip('hide').attr('data-bs-original-title', '複製程式碼')
+    },1000);
+    
+  });
 });
