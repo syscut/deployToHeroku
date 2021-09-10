@@ -8,7 +8,7 @@
   <hr class="bg-secondary">
   <h3 th:text="${article.title}"></h3>
   <p></p>
-  標籤：<span th:each="tags: ${tag}"><a th:href="@{/article-by-tag?tag={t}(t=${tags})}"><span class="badge bg-primary" th:text="${tags}"></span></a>&emsp;</span>
+  標籤：<span th:each="tags: ${tag}"><a th:href="@{/tags?tag={t}(t=${tags})}"><span class="badge bg-primary" th:text="${tags}"></span></a>&emsp;</span>
   <p></p>
     <article id="article" th:text="${article.content}"></article>
   </div>

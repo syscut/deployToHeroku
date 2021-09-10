@@ -20,7 +20,7 @@ public class ArticleService {
 	}
 	
 	public List<Article> getAllArticle(){
-		  return articleRepository.findAll();
+		  return articleRepository.findAllByOrderByIdDesc();
 	}
 	
 	public List<Article> getArticleById(Integer i){
@@ -33,6 +33,10 @@ public class ArticleService {
 		return articleRepository.save(article);
 	}
 
+	public List<Article> getArticleByTag(String tag){
+		  
+		return articleRepository.findTagsLike(tag);
+	}
 //	public void insertArticle(Article article) {
 //	Optional<Article> articleOptional = articleRepository.findArticleByTitle(article.getTitle());
 //	if(articleOptional.isPresent()) {

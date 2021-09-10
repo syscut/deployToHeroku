@@ -31,13 +31,13 @@
                 <li class="nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> 文章分類</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a class="dropdown-item" href="/error.html">JavaScript</a></li>
-                        <li><a class="dropdown-item" href="/error.html">Cascading Stylesheets(CSS)</a></li>
-                        <li><a class="dropdown-item" href="/error.html">Java</a></li>
+                        <li><a class="dropdown-item" href="/tags?tag=JS">JavaScript</a></li>
+                        <li><a class="dropdown-item" href="/tags?tag=CSS">Cascading Stylesheets(CSS)</a></li>
+                        <li><a class="dropdown-item" href="/tags?tag=Java">Java</a></li>
                         <li><a class="dropdown-item" href="https://dotblogs.com.tw/zjh/2018/09/20/maven_3">Maven新手教學</a></li>
-                        <li><a class="dropdown-item" href="/error.html">建構中...</a></li>
+                        <li><a class="dropdown-item" href="/error">建構中...</a></li>
                         <li class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">建構中...</a></li>
+                        <li><a class="dropdown-item" href="/error">建構中...</a></li>
                     </ul>
                 </li>
             </ul>
@@ -46,7 +46,7 @@
                     <a href="/login" class="nav-link"><nobr>登入</nobr></a>
                 </li>
             </ul>
-             <form class="d-flex">
+             <form class="d-flex" th:action="@{/search}" method="post">
         <input class="form-control me-2" type="search" placeholder="搜尋" aria-label="Search">
         <button class="btn btn-outline-secondary" type="submit"><nobr>搜尋</nobr></button>
       </form>

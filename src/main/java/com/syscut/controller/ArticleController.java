@@ -67,13 +67,34 @@ public class ArticleController {
 	  }
 	
 	
-	  
-//	  @Value("${spring.datasource.url}")
-//	  private String dbUrl;
-//	 
-//	  @Autowired
-//	  private DataSource dataSource;
-	  
+	@RequestMapping("/tags")
+	  public String tags(@RequestParam(name="tag")String tag,
+			  Model model) {
+		List<Article> a = articleService.getArticleByTag(tag);
+		int s = a.size();
+		
+		try {
+			for(int i = 0;i < s;i++) {
+				String c = a.get(i).getContent().substring(0, 150);
+				c += "...";
+				a.get(i).setContent(c);
+			};
+		} catch (Exception e) {}
+		if(a.isEmpty()) {
+			model.addAttribute("err","查無結果");
+		}else {
+			model.addAttribute("err","");
+		}
+		  model.addAttribute("article",a);
+		  model.addAttribute("search_tag",tag);
+		  return "resault";
+	  }  
+
+	@PostMapping("search")
+	public String searcharticle(String str) {
+		  
+		  return str;
+	  }
 	
 	  
 	//  String index(Model model) {
