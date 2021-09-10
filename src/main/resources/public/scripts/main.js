@@ -42,7 +42,7 @@ $(document).ready(()=>{
     let textBefore = v.substring(0,  cursorPos);
     let textAfter  = v.substring(cursorPos, v.length);
 
-    $('textarea').val(textBefore + tag_map(t.target.innerText) + textAfter);
+    $('textarea').val(textBefore+'\n'+tag_map(t.target.innerText)+'\n'+textAfter);
     
   })
 });

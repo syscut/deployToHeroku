@@ -40,7 +40,6 @@ kbd{/*按鍵標籤顏色反轉*/
     position: relative;
     background-color: #474747;
     border-radius: 5px;
-    left: 20px;
     width: fit-content;
     padding: 20px;
     padding-top: 0px;
@@ -48,7 +47,7 @@ kbd{/*按鍵標籤顏色反轉*/
 }
 .copybtn {
     position: absolute;
-    top:  .65rem;;
+    top:  -0.35rem;;
     right: .65rem;
     z-index: 10;
     display: block;
@@ -60,7 +59,7 @@ kbd{/*按鍵標籤顏色反轉*/
     border-radius: .25rem;
 }
 code{
-	margin-left: 20px
+	color: #ffda69;
 }
 .copyboard:hover,.copyboard:focus{
 	color:#fff;background-color:#0d6efd
