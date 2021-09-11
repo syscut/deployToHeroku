@@ -44,7 +44,7 @@ public class ArticleController {
 		  List<Article> l = articleService.getArticleById(id);
 		  List<String> t = Arrays.asList(l.get(0).getTags());
 		  //t = t.replace("[", "").replace("]", "").replace(",", "��");
-		  
+		  System.out.print(l.get(0).getContent());
 		  model.addAttribute("article",l);
 		  model.addAttribute("tag",t);
 		  return "js-map";

@@ -10,7 +10,7 @@
   <p></p>
   標籤：<span th:each="tags: ${tag}"><a th:href="@{/tags?tag={t}(t=${tags})}"><span class="badge bg-primary" th:text="${tags}"></span></a>&emsp;</span>
   <p></p>
-    <article id="article" th:text="${article.content}"></article>
+    <pre id="article" th:text="${article.content}"></pre>
   </div>
   </div>
  <p></p>
