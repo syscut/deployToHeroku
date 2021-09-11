@@ -9,9 +9,10 @@
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/error.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/prism.css"  />
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
        <div class="container-fluid">
         <a class="navbar-brand" href="/">果凍的學習筆記</a>
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,10 +44,10 @@
             </ul>
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="/login" class="nav-link"><nobr>登入</nobr></a>
+                    <a href="/login" class="nav-link">還沒做好→登入</a>
                 </li>
             </ul>
-             <form class="d-flex" th:action="@{/search}" method="post">
+             <form class="d-flex" action="#" th:action="@{/search}" method="post">
         <input class="form-control me-2" type="search" placeholder="搜尋" aria-label="Search">
         <button class="btn btn-outline-secondary" type="submit"><nobr>搜尋</nobr></button>
       </form>
@@ -58,6 +59,7 @@
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/scripts/prism.js}"></script>
     <script th:src="@{/scripts/main.js}"></script>
 </body>
 </html>

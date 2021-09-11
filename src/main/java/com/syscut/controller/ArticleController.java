@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.syscut.model.Article;
@@ -44,7 +45,7 @@ public class ArticleController {
 		  List<Article> l = articleService.getArticleById(id);
 		  List<String> t = Arrays.asList(l.get(0).getTags());
 		  //t = t.replace("[", "").replace("]", "").replace(",", "��");
-		  System.out.print(l.get(0).getContent());
+		  
 		  model.addAttribute("article",l);
 		  model.addAttribute("tag",t);
 		  return "js-map";
@@ -92,8 +93,8 @@ public class ArticleController {
 
 	@PostMapping("search")
 	public String searcharticle(String str) {
-		  
-		  return str;
+		  System.out.print(str);
+		  return "index";
 	  }
 	
 	  

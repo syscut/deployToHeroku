@@ -24,8 +24,11 @@ if(content){
 }
 const tag_map = tag =>{
   const tags = {
-    '<copyborad>':'<div class="copyborad">\n<button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製程式碼">Copy</button>\n\n</div>',
-    '<code>':'<code>\n\n</code>',
+    '<copyborad>':'<div class="copyborad">\n<button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製程式碼">Copy</button><div class="mt-30">\n\n</div></div>',
+    '<code-js>':'<pre class="scrollbar"><code class="scrollbar lang-js line-numbers">\n\n</code></pre>',
+    '<code-java>':'<pre class="scrollbar"><code class="scrollbar lang-java line-numbers">\n\n</code></pre>',
+    '<code-html>':'<pre class="scrollbar"><code class="scrollbar lang-html line-numbers">\n\n</code></pre>',
+    '<code-css>':'<pre class="scrollbar"><code class="scrollbar lang-css line-numbers">\n\n</code></pre>',
     '<kbd>':'<kbd>\n\n</kbd>',
     '<var>':'<var>\n\n</var>',
     '<samp>':'<samp>\n\n</samp>',
@@ -55,7 +58,7 @@ $(document).ready(()=>{
   $('.copybtn').click((c)=>{
     const range = document.createRange();
     let copybtn = c.target;
-    range.selectNode(copybtn.nextElementSibling);
+    range.selectNode(copybtn.nextSibling);
     const selection = window.getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
