@@ -16,6 +16,6 @@ public interface ArticleRepository extends JpaRepository<Article,Integer>{
 ////  @Query(value = "select date,title,content,tags from article where title like %?1%")
 //  List<Article> findArticleByTitleLike(String title);
   
- @Query(value = "select * from article where ?1 = ANY(tags)", nativeQuery=true)
+ @Query(value = "select * from article where ?1 = ANY(tags) order by id desc", nativeQuery=true)
   List<Article> findTagsLike(String t);
 }

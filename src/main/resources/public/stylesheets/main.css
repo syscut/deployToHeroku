@@ -23,6 +23,14 @@ div img{/*自動調整圖片大小*/
   word-break: break-word;
   font-size: 18px;
 }
+.resault-tag{
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+div[id="article"]code[class*="language-"] {
+  padding-bottom: 0px !important;
+  
+}
 .pt-6{/*新增pt-6為導覽列頂端的間距*/
 	padding-top:80px;
 }

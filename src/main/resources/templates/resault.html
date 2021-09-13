@@ -7,7 +7,7 @@
   <div class="text-center col-12" th:if="${err!=''}"><img src="/404.jpg"></div>
     <div class="col-12" th:each="article: ${article}">
     <h3><a class="text-decoration-none" th:href="@{/js-map?id={id}(id=${article.id})}" ><span th:text="${article.title}"></span></a></h3>
-  <a class="text-decoration-none text-white" th:href="@{/js-map?id={id}(id=${article.id})}" ><span th:text="${article.content}"></span></a>
+  <a class="text-decoration-none text-white" th:href="@{/js-map?id={id}(id=${article.id})}" ><span class="resault-tag" th:text="${article.content}"></span></a>
   <p></p>
   <span th:text="${article.date}"></span>
   <p></p>

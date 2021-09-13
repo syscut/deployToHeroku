@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.syscut.model.Article;
@@ -60,8 +59,11 @@ public class ArticleController {
 	
 	@PostMapping("addarticle")
 	public String insertarticle(Article article,Model model) {
+		String regx_bef = "line-numbers\">\r\n";
+		String regx_aft = "</code>\r\n";
+		String regx_pre = "</pre>\r\n";
+		article.setContent(article.getContent().replaceAll(regx_bef, "line-numbers\">").replaceAll(regx_aft, "</code>").replaceAll(regx_pre, "</pre>"));
 		  article.setDate(LocalDate.now());
-		  
 		  articleService.insert(article);
 		  model.addAttribute("href",articleService.getAllArticle());
 		  return "index";

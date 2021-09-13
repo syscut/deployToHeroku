@@ -1,5 +1,6 @@
 const code = document.querySelector("copy");
 let content = document.getElementById("article");
+let content_tag = document.getElementsByClassName("resault-tag");
 
 code.onclick = function() {
   document.execCommand("copy");
@@ -18,25 +19,67 @@ code.addEventListener("copy", function(event) {
         });
   }
 });
-
 if(content){
   content.innerHTML = content.innerText;
 }
+if(content_tag.length){
+  $(content_tag).each((no,cont) => {
+    cont.innerHTML = cont.innerText;
+  });
+}
 const tag_map = tag =>{
   const tags = {
-    '<copyborad>':'<div class="copyborad">\n<button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製程式碼">Copy</button><div class="mt-30">\n\n</div></div>',
-    '<code-js>':'<pre class="scrollbar"><code class="scrollbar lang-js line-numbers">\n\n</code></pre>',
-    '<code-java>':'<pre class="scrollbar"><code class="scrollbar lang-java line-numbers">\n\n</code></pre>',
-    '<code-html>':'<pre class="scrollbar"><code class="scrollbar lang-html line-numbers">\n\n</code></pre>',
-    '<code-css>':'<pre class="scrollbar"><code class="scrollbar lang-css line-numbers">\n\n</code></pre>',
-    '<kbd>':'<kbd>\n\n</kbd>',
-    '<var>':'<var>\n\n</var>',
-    '<samp>':'<samp>\n\n</samp>',
-    '<details>':'<details>\n<summary>\n\n</summary>\n<p>\n\n</p>\n</details>',
-    '<img>':'<img src="">',
-    '&lt;&gt;':'&lt; &gt;'
+    '<copyborad>':`<div class="copyborad">
+<button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製">Copy</button>
+<div class="mt-30">
+
+</div>
+</div>`,
+    '<code-js>':`<pre class="scrollbar">
+<code class="scrollbar lang-js line-numbers">
+    
+</code>
+</pre>`,
+    '<code-java>':`<pre class="scrollbar">
+<code class="scrollbar lang-java line-numbers">
+      
+</code>
+</pre>`,
+    '<code-html>':`<pre class="scrollbar">
+<code class="scrollbar lang-html line-numbers">
+
+</code>
+</pre>`,
+    '<code-css>':`<pre class="scrollbar">
+<code class="scrollbar lang-css line-numbers">
+
+</code>
+</pre>`,
+    '<kbd>':`<kbd>
+
+</kbd>`,
+    '<var>':`<var>
+    
+</var>`,
+    '<samp>':`<samp>
+    
+</samp>`,
+    '<details>':`<details>
+<summary>
+      
+</summary>
+<p>
+      
+</p>
+</details>`,
+    '<img>':`<img src="">`,
+    '&lt;&gt;':''
   };
   return tags[tag];
+}
+
+const replace = (s) =>{
+  return s.replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -50,7 +93,13 @@ $(document).ready(()=>{
     let v = $('textarea').val();
     let textBefore = v.substring(0,  cursorPos);
     let textAfter  = v.substring(cursorPos, v.length);
-
+    
+    if(tag_map(t.target.innerText)==''){
+      let selection = window.getSelection().toString();
+      textAfter = textAfter.substring(0,(textAfter.length-selection.length));
+      $('textarea').val(textBefore+replace(selection)+textAfter);
+      return;
+    }
     $('textarea').val(textBefore+'\n'+tag_map(t.target.innerText)+'\n'+textAfter);
     
   });
@@ -58,7 +107,7 @@ $(document).ready(()=>{
   $('.copybtn').click((c)=>{
     const range = document.createRange();
     let copybtn = c.target;
-    range.selectNode(copybtn.nextSibling);
+    range.selectNode(copybtn.nextElementSibling);
     const selection = window.getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
@@ -71,4 +120,5 @@ $(document).ready(()=>{
     },1000);
     
   });
+  
 });
