@@ -6,11 +6,11 @@ import javax.validation.constraints.Size;
 
 public class DoLogin {
 	  @NotNull
-	  @Size(min=5, max=20,message = "{ 帳號長度5-20 }")
+	  @Size(min=5, max=20)
 	  private String id;
 	  
 	  @NotNull
-	  @Pattern(regexp = "^[a-zA-Z].{6,}",message = "{ 密碼開頭大小寫英文，至少6個英數字 }")
+	  @Pattern(regexp = "^[a-zA-Z].{6,}")
 	  private String pd;
       
 	  public String getId() {

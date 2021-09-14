@@ -36,22 +36,22 @@ const tag_map = tag =>{
 </div>
 </div>`,
     '<code-js>':`<pre class="scrollbar">
-<code class="scrollbar lang-js line-numbers">
+<code class="lang-js line-numbers">
     
 </code>
 </pre>`,
     '<code-java>':`<pre class="scrollbar">
-<code class="scrollbar lang-java line-numbers">
+<code class="lang-java line-numbers">
       
 </code>
 </pre>`,
     '<code-html>':`<pre class="scrollbar">
-<code class="scrollbar lang-html line-numbers">
+<code class="lang-html line-numbers">
 
 </code>
 </pre>`,
     '<code-css>':`<pre class="scrollbar">
-<code class="scrollbar lang-css line-numbers">
+<code class="lang-css line-numbers">
 
 </code>
 </pre>`,
@@ -73,6 +73,7 @@ const tag_map = tag =>{
 </p>
 </details>`,
     '<img>':`<img src="">`,
+    '<a>':`<a href=""></a>`,
     '&lt;&gt;':''
   };
   return tags[tag];

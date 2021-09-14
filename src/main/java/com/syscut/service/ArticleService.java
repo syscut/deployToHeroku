@@ -37,6 +37,11 @@ public class ArticleService {
 		  
 		return articleRepository.findTagsLike(tag);
 	}
+	
+	public List<Article> getArticleBySearch(String str){
+		  
+		return articleRepository.searchAllLike(str);
+	}
 //	public void insertArticle(Article article) {
 //	Optional<Article> articleOptional = articleRepository.findArticleByTitle(article.getTitle());
 //	if(articleOptional.isPresent()) {

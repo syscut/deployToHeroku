@@ -18,4 +18,7 @@ public interface ArticleRepository extends JpaRepository<Article,Integer>{
   
  @Query(value = "select * from article where ?1 = ANY(tags) order by id desc", nativeQuery=true)
   List<Article> findTagsLike(String t);
+ 
+ @Query(value = "select * from article where ?1 = ANY(tags) or title like %?1% or content like %?1%", nativeQuery=true)
+ List<Article> searchAllLike(String t);
 }

@@ -9,10 +9,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.syscut.model.Article;
+import com.syscut.model.DoLogin;
 import com.syscut.service.ArticleService;
 
 @Controller
@@ -59,10 +62,13 @@ public class ArticleController {
 	
 	@PostMapping("addarticle")
 	public String insertarticle(Article article,Model model) {
-		String regx_bef = "line-numbers\">\r\n";
-		String regx_aft = "</code>\r\n";
-		String regx_pre = "</pre>\r\n";
-		article.setContent(article.getContent().replaceAll(regx_bef, "line-numbers\">").replaceAll(regx_aft, "</code>").replaceAll(regx_pre, "</pre>"));
+		String regx_code_f = "line-numbers\">\r\n";
+		String regx_code_e = "</code>\r\n";
+		String regx_pre_e = "</pre>\r\n";
+		String article_be = article.getContent().replaceAll(regx_code_f, "line-numbers\">").replaceAll(regx_code_e, "</code>").replaceAll(regx_pre_e, "</pre>");
+		String regex = "(<)(((?!([p][r][e]|[c][o][d][e]|[<>])).)*)(>)";
+		String article_af = article_be.replaceAll(regex, "&lt;$2&gt;");
+		article.setContent(article_af);
 		  article.setDate(LocalDate.now());
 		  articleService.insert(article);
 		  model.addAttribute("href",articleService.getAllArticle());
@@ -94,94 +100,43 @@ public class ArticleController {
 	  }  
 
 	@PostMapping("search")
-	public String searcharticle(String str) {
-		  System.out.print(str);
-		  return "index";
+	public String searcharticle(Model model,String str) {
+		List<Article> resault = articleService.getArticleBySearch(str);
+		
+        int s = resault.size();
+		
+		try {
+			for(int i = 0;i < s;i++) {
+				String c = resault.get(i).getContent().substring(0, 150);
+				c += "...";
+				resault.get(i).setContent(c);
+			};
+		} catch (Exception e) {}
+		if(resault.isEmpty()) {
+			model.addAttribute("err","查無結果");
+		}else {
+			model.addAttribute("err","");
+		}
+		model.addAttribute("article",resault);
+		model.addAttribute("search_tag",str);
+		  return "resault";
 	  }
 	
+	  @RequestMapping("/go")
+	  String login(Model model) {
+		  model.addAttribute("doLogin", new DoLogin());
+		  model.addAttribute("err","");
+		return "login";
+	  }
 	  
-	//  String index(Model model) {
-//		  model.addAttribute("href",articleService.articleList());
-//		  
-//		  return "index";
-//		    try (Connection connection = dataSource.getConnection()) {
-//		      Statement stmt = connection.createStatement();
-//		      
-//		      ResultSet rs = stmt.executeQuery("select date,title from article");
-//		      ArrayList<String> href = new ArrayList<String>();
-		      //ArrayList<String> title = new ArrayList<String>();
-	          //StringBuffer sb = new StringBuffer();
-	          //sb.append("[");
-//		      while (rs.next()) {
-//		    	  href.add("/js-map?date="+String.valueOf(rs.getDate(1))+"&title="+rs.getString(2));
-		    	  //title.add(String.valueOf(rs.getDate(1)).replaceAll("-", "/")+"-"+rs.getString(2));
-		    	  //sb.append("{\"date\":\""+String.valueOf(rs.getDate(1)).replaceAll("-", "/")+"\",\"title\":\""+rs.getString(2)+"\"},");
-		      //}
-		      //sb.deleteCharAt(sb.length()-1);
-		      //sb.append("]");
-		      //model.put("href", sb);
-//		      model.put("href", href);
-//		      return "index";
-//		    } catch (Exception e) {
-//		    	model.put("message", e.getMessage());
-//		      return "error";
-//		    }
-		  
-	  
-//	  @RequestMapping("/login")
-//	  String doLoginValid(@Validated DoLogin doLogin,BindingResult bindingResult,Model model) {
-//		  if(bindingResult.hasErrors()) {
-//				return "login";
-//			}
-//		  return "index";
-//	  }
-	  
-	  
-//	  
-//	  @PostMapping("/addarticle")
-//	  String add(NewArticle newarticle,Model model) {
-//		  try(Connection connection = dataSource.getConnection()){
-//	      Statement stmt = connection.createStatement();
-//		  stmt.executeUpdate("insert into article values ('"+LocalDate.now()+"','"+newarticle.getTitle()+"','{"+newarticle.getTags()+"}','"+newarticle.getContent()+"');");
-//		  }catch (Exception e) {
-//		      return newarticle.getDate()+newarticle.getContent()+newarticle.getTags()+newarticle.getTitle();
-//		    }
-//		  return "index";
-//	  }
-
-
-
-//	  @RequestMapping("/db")
-//	  String db(Map<String, Object> model) {
-//	    try (Connection connection = dataSource.getConnection()) {
-//	      Statement stmt = connection.createStatement();
-//	      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-//	      stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-//	      
-//	      ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-//
-//	      ArrayList<String> output = new ArrayList<String>();
-//	      while (rs.next()) {
-//	        output.add("Read from DB: " + rs.getTimestamp("tick"));
-//	      }
-//
-//	      model.put("records", output);
-//	      return "db";
-//	    } catch (Exception e) {
-//	      model.put("message", e.getMessage());
-//	      return "error";
-//	    }
-//	  }
-
-//	  @Bean
-//	  public DataSource dataSource() throws SQLException {
-//	    if (dbUrl == null || dbUrl.isEmpty()) {
-//	      return new HikariDataSource();
-//	    } else {
-//	      HikariConfig config = new HikariConfig();
-//	      config.setJdbcUrl(dbUrl);
-//	      return new HikariDataSource(config);
-//	    }
-//	  }
-
+	  @PostMapping("login")
+	  String doLoginValid(@Validated DoLogin doLogin,BindingResult bindingResult,Model model) {
+			  if(bindingResult.hasErrors()) {
+				  model.addAttribute("err","err");
+					return "login";
+				}
+			  model.addAttribute("login_name",doLogin.getId());
+			  model.addAttribute("href",articleService.getAllArticle());
+		  return "index";
+	  }
 }
