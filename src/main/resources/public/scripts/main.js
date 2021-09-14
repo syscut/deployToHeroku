@@ -29,49 +29,51 @@ if(content_tag.length){
 }
 const tag_map = tag =>{
   const tags = {
-    '<copyborad>':`<div class="copyborad">
-<button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製">Copy</button>
-<div class="mt-30">
+    '<copyborad>':`<div class="copyborad" xxx>
+<button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製" xxx>Copy</button xxx>
+<div class="mt-30" xxx>
 
-</div>
-</div>`,
-    '<code-js>':`<pre class="scrollbar">
-<code class="lang-js line-numbers">
+</div xxx>
+</div xxx>`,
+    '<code-js>':`<pre class="scrollbar" xxx>
+<code class="lang-js line-numbers" xxx>
     
-</code>
-</pre>`,
-    '<code-java>':`<pre class="scrollbar">
-<code class="lang-java line-numbers">
+</code xxx>
+</pre xxx>`,
+    '<code-java>':`<pre class="scrollbar" xxx>
+<code class="lang-java line-numbers" xxx>
       
-</code>
-</pre>`,
-    '<code-html>':`<pre class="scrollbar">
-<code class="lang-html line-numbers">
+</code xxx>
+</pre xxx>`,
+    '<code-html>':`<pre class="scrollbar" xxx>
+<code class="lang-html line-numbers" xxx>
 
-</code>
-</pre>`,
-    '<code-css>':`<pre class="scrollbar">
-<code class="lang-css line-numbers">
+</code xxx>
+</pre xxx>`,
+    '<code-css>':`<pre class="scrollbar" xxx>
+<code class="lang-css line-numbers" xxx>
 
-</code>
-</pre>`,
-    '<kbd>':`<kbd>
+</code xxx>
+</pre xxx>`,
+    '<kbd>':`<kbd xxx>
 
-</kbd>`,
-    '<var>':`<var>
+</kbd xxx>`,
+    '<var>':`<var xxx>
     
-</var>`,
-    '<samp>':`<samp>
+</var xxx>`,
+    '<samp>':`<samp xxx>
     
-</samp>`,
-    '<details>':`<details>
-<summary>
+</samp xxx>`,
+    '<details>':`<details xxx>
+<summary xxx>
       
-</summary>
+</summary xxx>
+<p xxx>
 
-</details>`,
-    '<img>':`<img src="">`,
-    '<a>':`<a href=""></a>`,
+</p xxx>
+</details xxx>`,
+    '<img>':`<img src="" xxx>`,
+    '<a>':`<a href="" xxx></a xxx>`,
     '&lt;&gt;':''
   };
   return tags[tag];

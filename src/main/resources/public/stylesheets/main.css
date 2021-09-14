@@ -54,6 +54,7 @@ kbd{/*按鍵標籤顏色反轉*/
     border-radius: 5px;
     padding: 20px;
     padding-top: 0px;
+    padding-bottom: 0px;
 }
 .copybtn {
     position: absolute;
@@ -101,5 +102,5 @@ kbd{/*按鍵標籤顏色反轉*/
 	color:#fff;background-color:#0d6efd
 	}
 .mt-30{
-	margin-top: -30px;
+	margin-top: -50px;
 }
