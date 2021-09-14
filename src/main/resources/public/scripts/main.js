@@ -68,9 +68,7 @@ const tag_map = tag =>{
 <summary>
       
 </summary>
-<p>
-      
-</p>
+
 </details>`,
     '<img>':`<img src="">`,
     '<a>':`<a href=""></a>`,

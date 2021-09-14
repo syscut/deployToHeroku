@@ -66,7 +66,7 @@ public class ArticleController {
 		String regx_code_e = "</code>\r\n";
 		String regx_pre_e = "</pre>\r\n";
 		String article_be = article.getContent().replaceAll(regx_code_f, "line-numbers\">").replaceAll(regx_code_e, "</code>").replaceAll(regx_pre_e, "</pre>");
-		String regex = "(<)(((?!([p][r][e]|[c][o][d][e]|[<>])).)*)(>)";
+		String regex = "(<)(((?!([p][r][e]|[c][o][d][e]|[h][r][e][f]|[/][a]|[s][r][c]|[d][e][t][a][i][l][s]|[s][u][m][m][a][r][y]|[k][b][d]|[v][a][r]|[s][a][m][p]|[<>])).)*)(>)";
 		String article_af = article_be.replaceAll(regex, "&lt;$2&gt;");
 		article.setContent(article_af);
 		  article.setDate(LocalDate.now());
