@@ -145,4 +145,8 @@ $(document).ready(()=>{
     }
     $(t.target).parents('.form-label').next().val(input+com+tag);
   });
+
+  $('.show').click(()=>{
+   $('.hide').css('display','');
+  });
 });
