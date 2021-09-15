@@ -1,7 +1,7 @@
-copy{
+copy,.insert-tag{
   cursor: pointer;
 }
-copy:hover{
+copy,.insert-tag:hover{
   color:lightgray
 }
 li img{/*導覽列的圖示*/

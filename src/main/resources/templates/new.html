@@ -5,10 +5,10 @@
  <form action="#" th:action="@{/addarticle}" th:object="${article}" method="post">
   <div class="row">
     <div class="col-12">
-    <div class="btn-group position-fixed" style="right: 3%" role="group">
+    <div class="btn-group-vertical position-fixed" style="right: 3%" role="group">
     <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      插入標籤
+      插入程式碼
     </button>
     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
   <li><samp class="dropdown-item btn" >&lt;copyborad&gt;</samp></li>
@@ -16,15 +16,23 @@
   <li><samp class="dropdown-item btn" >&lt;code-java&gt;</samp></li>
   <li><samp class="dropdown-item btn" >&lt;code-html&gt;</samp></li>
   <li><samp class="dropdown-item btn" >&lt;code-css&gt;</samp></li>
+  </ul>
+  </div>
+   <div class="btn-group" role="group">
+    <button id="btnGroupDrop2" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      個別元件
+    </button>
+  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop2">
   <li><samp class="dropdown-item btn" >&lt;kbd&gt;</samp></li>
   <li><samp class="dropdown-item btn" >&lt;var&gt;</samp></li>
   <li><samp class="dropdown-item btn" >&lt;samp&gt;</samp></li>
   <li><samp class="dropdown-item btn" >&lt;details&gt;</samp></li>
   <li><samp class="dropdown-item btn" >&lt;img&gt;</samp></li>
   <li><samp class="dropdown-item btn" >&lt;a&gt;</samp></li>
-  <li><samp class="dropdown-item btn" >&amp;lt;&amp;gt;</samp></li>
   </ul>
   </div>
+  <button type="button" class="btn btn-secondary"><samp class="exec" >&amp;lt;&amp;gt;</samp></button>
+  <button type="button" class="btn btn-secondary"><samp class="exec" >標註執行</samp></button>
     </div>
 	<h1>新增</h1>
 	<p></p>
@@ -36,7 +44,7 @@
    	<label class="form-label">內容：</label>
    	<textarea class="form-control" rows="50" th:field="*{content}"></textarea>
    	<p></p>
-   	<label class="form-label">Tags：(標籤之間用逗號,隔開)</label>
+   	<label class="form-label">Tags：(標籤之間用逗號,隔開)&emsp;<span th:each="t: ${all_tag}"><span class="badge bg-primary insert-tag" th:text="${t}"></span>&emsp;</span></label>
        <input class="form-control w-50" type="text" th:field="*{tags}" />
        </div>
        </div>

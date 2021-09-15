@@ -35,6 +35,12 @@ public class ArticleController {
 		return "index";
 	}
 	
+	@RequestMapping("/alltags")
+	public String allTags(Model model) {
+		model.addAttribute("all",articleService.countTags());
+		return "all-tags";
+	}
+	
 	  @RequestMapping("/js-map")
 	 public String jsmap(
 			  @RequestParam(name="id")Integer id,
@@ -46,6 +52,7 @@ public class ArticleController {
 //		  model.put("today",today);
 		  List<Article> l = articleService.getArticleById(id);
 		  List<String> t = Arrays.asList(l.get(0).getTags());
+		  l.get(0).setContent(l.get(0).getContent().replace("xxx", ""));
 		  //t = t.replace("[", "").replace("]", "").replace(",", "��");
 		  
 		  model.addAttribute("article",l);
@@ -57,6 +64,7 @@ public class ArticleController {
 	  public String newarticle(Model model) {
 		  model.addAttribute("article",new Article());
 		  model.addAttribute("today",LocalDate.now().format(formatter));
+		  model.addAttribute("all_tag",articleService.allTags());
 		  return "new";
 	  }  
 	

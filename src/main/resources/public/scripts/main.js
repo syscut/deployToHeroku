@@ -73,14 +73,17 @@ const tag_map = tag =>{
 </p xxx>
 </details xxx>`,
     '<img>':`<img src="" xxx>`,
-    '<a>':`<a href="" xxx></a xxx>`,
-    '&lt;&gt;':''
+    '<a>':`<a href="" xxx></a xxx>`
   };
   return tags[tag];
 }
 
 const replace = (s) =>{
   return s.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+const exe = (s) =>{
+  return s.replace(/>/g,' xxx>');
 }
 
 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -95,14 +98,25 @@ $(document).ready(()=>{
     let textBefore = v.substring(0,  cursorPos);
     let textAfter  = v.substring(cursorPos, v.length);
     
-    if(tag_map(t.target.innerText)==''){
-      let selection = window.getSelection().toString();
-      textAfter = textAfter.substring(0,(textAfter.length-selection.length));
-      $('textarea').val(textBefore+replace(selection)+textAfter);
-      return;
-    }
     $('textarea').val(textBefore+'\n'+tag_map(t.target.innerText)+'\n'+textAfter);
     
+  });
+  
+  $('samp[class=exec]').click((t)=>{
+    let cursorPos = $('textarea').prop('selectionStart'),
+        v = $('textarea').val(),
+        textBefore = v.substring(0,  cursorPos),
+        selection = window.getSelection().toString();
+    let textAfter  = v.substring(textBefore.length+selection.length);
+
+    if(t.target.innerText=='&lt;&gt;'){
+      $('textarea').val(textBefore+replace(selection)+textAfter);
+    return;
+    }
+
+    if(t.target.innerText=='標註執行'){
+      $('textarea').val(textBefore+exe(selection)+textAfter);
+    }
   });
 
   $('.copybtn').click((c)=>{
@@ -122,4 +136,13 @@ $(document).ready(()=>{
     
   });
   
+  $('.insert-tag').click((t)=>{
+    let com = '';
+    let tag = t.target.innerText;
+    let input = $(t.target).parents('.form-label').next().val();
+    if(input!=''){
+        com = ',';
+    }
+    $(t.target).parents('.form-label').next().val(input+com+tag);
+  });
 });

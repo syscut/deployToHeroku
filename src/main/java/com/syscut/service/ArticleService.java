@@ -2,6 +2,7 @@ package com.syscut.service;
 
 import com.syscut.model.Article;
 import com.syscut.model.ArticleRepository;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,16 @@ public class ArticleService {
 	}
 	
 	public List<Article> getArticleBySearch(String str){
-		  
+		  str = str.trim();
 		return articleRepository.searchAllLike(str);
+	}
+	
+	public List<String> allTags(){
+		return articleRepository.getAllTags();
+	}
+	
+	public List<String> countTags(){
+	    return articleRepository.countAllTags();
 	}
 
 }	
