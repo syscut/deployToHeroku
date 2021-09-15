@@ -104,3 +104,6 @@ kbd{/*按鍵標籤顏色反轉*/
 .mt-30{
 	margin-top: -50px;
 }
+.hidden{
+	display: none;
+}
