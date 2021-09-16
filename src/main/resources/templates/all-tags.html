@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-3" th:each="t: ${all}">
     
-       <a th:href="@{/tags?tag={tag}(tag=${#strings.arraySplit(t,',')[0]})}"><span class="badge bg-primary col-12 fs-4" th:text="${t}"></span></a>&emsp;
+       <a th:href="@{/tags?tag={tag}(tag=${#strings.arraySplit(t,',')[0]})}"><span class="badge bg-primary col-12 p-2" th:text="${t}"></span></a>&emsp;
     
   </div>
   </div>

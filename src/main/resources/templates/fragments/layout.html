@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
        <div class="container-fluid">
-        <a class="navbar-brand" href="/">果凍的學習筆記</a>
+        <a class="navbar-brand" href="/"><img src="/brand.png"></a>
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,8 +23,8 @@
                 <li class="nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> 關於我</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a class="dropdown-item" href="https://github.com/syscut"><img src="/g-logo.png">我的github</a></li>
-                        <li><a class="dropdown-item" href="https://www.facebook.com/kim23362611/"><img src="/f-logo.png">我的Facebook</a></li>
+                        <li><a class="dropdown-item" href="https://github.com/syscut" target="_blank"><img src="/g-logo.png">我的github</a></li>
+                        <li><a class="dropdown-item" href="https://www.facebook.com/kim23362611/" target="_blank"><img src="/f-logo.png">我的Facebook</a></li>
                     </ul>
                 </li>
              </ul>
@@ -32,10 +32,10 @@
                 <li class="nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> 文章分類</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a class="dropdown-item" href="/tags?tag=JS">JavaScript</a></li>
+                        <li><a class="dropdown-item" href="/tags?tag=JavaScript">JavaScript</a></li>
                         <li><a class="dropdown-item" href="/tags?tag=CSS">Cascading Stylesheets(CSS)</a></li>
                         <li><a class="dropdown-item" href="/tags?tag=Java">Java</a></li>
-                        <li><a class="dropdown-item" href="https://dotblogs.com.tw/zjh/2018/09/20/maven_3">Maven新手教學</a></li>
+                        <li><a class="dropdown-item" href="https://dotblogs.com.tw/zjh/2018/09/20/maven_3" target="_blank">Maven新手教學</a></li>
                         <li class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/alltags">所有標籤</a></li>
                     </ul>
@@ -44,7 +44,7 @@
             <ul class="nav navbar-nav">
                 <li class="">
                     <a th:if="${login_name != null}" th:text="歡迎+${login_name}" href="#" class="nav-link"></a>
-                    <a th:if="${login_name == null}" href="/go" class="nav-link">還沒做好→登入</a>
+                    <a th:if="${login_name == null}" href="/go" class="nav-link"><nobr>還沒做好→登入</nobr></a>
                 </li>
             </ul>
              <form class="d-flex" action="#" th:action="@{/search}" method="post">
