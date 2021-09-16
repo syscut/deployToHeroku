@@ -92,6 +92,7 @@ let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 });
 
 $(document).ready(()=>{
+
   $('samp[class^=dropdown-item]').click((t)=>{
     let cursorPos = $('textarea').prop('selectionStart');
     let v = $('textarea').val();
@@ -131,7 +132,7 @@ $(document).ready(()=>{
     
     window.setTimeout(()=>{$(copybtn).attr('data-bs-original-title', '已複製').tooltip('show')},400);
     window.setTimeout(()=>{
-      $(copybtn).tooltip('hide').attr('data-bs-original-title', '複製程式碼')
+      $(copybtn).tooltip('hide').attr('data-bs-original-title', '複製')
     },1000);
     
   });

@@ -68,6 +68,7 @@ kbd{/*按鍵標籤顏色反轉*/
     background-color: #fff;
     border: 1px solid;
     border-radius: .25rem;
+    container: 'body'
 }
 .copybtn:hover{
 	color:white;
