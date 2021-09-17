@@ -31,18 +31,16 @@ const tag_map = tag =>{
   const tags = {
     '<copyborad>':`<div class="copyborad" xxx>
 <button type="button" class="copybtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="複製" xxx>Copy</button xxx>
-<div class="mt-30" xxx>
 
-</div xxx>
 </div xxx>`,
     '<code-js>':`<pre class="scrollbar" xxx>
 <code class="lang-js line-numbers" xxx>
-    
+
 </code xxx>
 </pre xxx>`,
     '<code-java>':`<pre class="scrollbar" xxx>
 <code class="lang-java line-numbers" xxx>
-      
+
 </code xxx>
 </pre xxx>`,
     '<code-html>':`<pre class="scrollbar" xxx>
@@ -59,14 +57,14 @@ const tag_map = tag =>{
 
 </kbd xxx>`,
     '<var>':`<var xxx>
-    
+
 </var xxx>`,
     '<samp>':`<samp xxx>
-    
+
 </samp xxx>`,
     '<details>':`<details xxx>
 <summary xxx>
-      
+
 </summary xxx>
 <p xxx>
 
@@ -120,20 +118,36 @@ $(document).ready(()=>{
     }
   });
 
-  $('.copybtn').click((c)=>{
-    const range = document.createRange();
-    let copybtn = c.target;
-    range.selectNode(copybtn.nextElementSibling);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand('copy');
-    selection.removeAllRanges();
+  $('.copybtn').mouseover((e)=>{
     
+    $(e.target).attr('data-bs-original-title', '複製').tooltip('show');
+
+  });
+
+  $('.copybtn').click((c)=>{
+    
+    let copybtn = c.target;
+    let target_node = copybtn.parentNode;
+    let new_text = target_node.innerText.substring(5);
+    
+     $('<input>', {
+       id:'copy_content',
+       type:'text',
+       value:new_text,
+       style:'display:none'
+       }).appendTo(target_node);
+
+    let node = $('#copy_content')[0];
+
+    node.select();
+    node.setSelectionRange(0, 99999); 
+    navigator.clipboard.writeText(node.value);
+    
+    $('#copy_content').remove();
     window.setTimeout(()=>{$(copybtn).attr('data-bs-original-title', '已複製').tooltip('show')},400);
-    window.setTimeout(()=>{
-      $(copybtn).tooltip('hide').attr('data-bs-original-title', '複製')
-    },1000);
+     window.setTimeout(()=>{
+       $(copybtn).tooltip('hide')
+     },1000);
     
   });
   

@@ -3,9 +3,9 @@
 <body class="bg-dark text-white">
  <div class="container pt-6 px-4">
   <div class="row">
-    <div class="col-3" th:each="t: ${all}">
+    <div class="col-6 col-sm-3 col-xl-2" th:each="t: ${all}">
     
-       <a th:href="@{/tags?tag={tag}(tag=${#strings.arraySplit(t,',')[0]})}"><span class="badge bg-primary col-12 p-2" th:text="${t}"></span></a>&emsp;
+     <a class="badge bg-primary col-12 p-2 fs-6 text-wrap text-decoration-none" th:href="@{/tags?tag={tag}(tag=${#strings.arraySplit(t,',')[0]})}" th:text="${t}"></a>&emsp;
     
   </div>
   </div>

@@ -70,12 +70,14 @@ public class ArticleController {
 	
 	@PostMapping("addarticle")
 	public String insertarticle(Article article,Model model) {
-		String regx_code_f = "line-numbers\">\r\n";
-		String regx_code_e = "</code>\r\n";
-		String regx_pre_e = "</pre>\r\n";
-		String article_be = article.getContent().replaceAll(regx_code_f, "line-numbers\">").replaceAll(regx_code_e, "</code>").replaceAll(regx_pre_e, "</pre>");
 		String regex = "(<)(((?!([x][x][x]|[<>])).)*)(>)";
-		String article_af = article_be.replaceAll(regex, "&lt;$2&gt;");
+		String article_be = article.getContent().replaceAll(regex, "&lt;$2&gt;");
+		
+		String regex_frn = "\r\n<";
+		String regex_ern = ">\r\n";
+		
+		String article_af = article_be.replaceAll(regex_frn, "<").replaceAll(regex_ern, ">");
+		
 		article.setContent(article_af);
 		  article.setDate(LocalDate.now());
 		  articleService.insert(article);
