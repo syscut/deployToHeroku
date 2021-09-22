@@ -2,6 +2,10 @@ const code = document.querySelector("copy");
 let content = document.getElementById("article");
 let content_tag = document.getElementsByClassName("resault-tag");
 
+var sc_project=12621545; 
+var sc_invisible=0; 
+var sc_security="7a6cca27";
+
 code.onclick = function() {
   document.execCommand("copy");
 }

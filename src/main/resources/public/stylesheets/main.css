@@ -120,3 +120,6 @@ kbd{/*按鍵標籤顏色反轉*/
 .text-wrap{
 	word-wrap: break-word;
 }
+img.statcounter{
+	height:16px;
+}
