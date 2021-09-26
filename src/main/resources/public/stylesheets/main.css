@@ -123,3 +123,8 @@ kbd{/*按鍵標籤顏色反轉*/
 img.statcounter{
 	height:16px;
 }
+.navbar-brand img{
+	width:30px;
+	margin-right:7px;
+	margin-bottom: 6px;
+}

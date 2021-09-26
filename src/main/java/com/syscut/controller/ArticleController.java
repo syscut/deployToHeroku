@@ -94,7 +94,7 @@ public class ArticleController {
 		
 		try {
 			for(int i = 0;i < s;i++) {
-				String c = a.get(i).getContent().substring(0, 150);
+				String c = a.get(i).getContent().substring(0, 75);
 				c += "...";
 				a.get(i).setContent(c);
 			};
