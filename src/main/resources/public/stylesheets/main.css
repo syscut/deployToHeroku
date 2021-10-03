@@ -120,8 +120,14 @@ kbd{/*按鍵標籤顏色反轉*/
 .text-wrap{
 	word-wrap: break-word;
 }
-img.statcounter{
-	height:16px;
+img.counter{
+	margin-bottom: 0.15rem;
+	margin-left: -4px;
+    margin-right: -4px;
+	zoom:140%;
+}
+span.statcounter{
+	display:none;
 }
 .navbar-brand img{
 	width:30px;
