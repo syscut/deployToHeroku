@@ -117,6 +117,15 @@
 
   <build>
     <plugins>
+    <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <configuration>
+        <source>1.8</source> <!-- jdk version --> 
+        <target>1.8</target> <!-- jdk version -->
+        <encoding>UTF-8</encoding>
+    </configuration>
+</plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
