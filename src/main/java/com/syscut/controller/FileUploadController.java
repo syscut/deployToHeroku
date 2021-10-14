@@ -72,7 +72,7 @@ public class FileUploadController {
 			return "redirect:/uploadfiles";
 		}
 		redirectAttributes.addFlashAttribute("message",
-				"ÀÉ®×" + file.getOriginalFilename() + "¤W¶Ç¦¨§¹¦¨!");
+				"æª”æ¡ˆ" + file.getOriginalFilename() + "ä¸Šå‚³æˆæˆåŠŸ!");
 
 		return "redirect:/uploadfiles";
 	}
@@ -83,7 +83,7 @@ public class FileUploadController {
 		//Resource file = storageService.loadAsResource(filename);
 		articleService.deleteAll(properties.getLocation()+"/"+filename);
 		//model.addAttribute("message",properties.getLocation());
-		redirectAttributes.addFlashAttribute("message",filename+"¤w§R°£");
+		redirectAttributes.addFlashAttribute("message",filename+"å·²åˆªé™¤");
 		return "redirect:/uploadfiles";
 		
 //		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,

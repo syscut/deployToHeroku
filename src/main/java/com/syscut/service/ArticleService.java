@@ -70,14 +70,14 @@ public class ArticleService {
 	public void store(MultipartFile file) {
 		try {
 			if (file.isEmpty()) {
-				throw new RuntimeException("µLªk¤W¶ÇªÅÀÉ®×");
+				throw new RuntimeException("ç„¡æ³•ä¸Šå‚³ç©ºæª”æ¡ˆ");
 			}
 			Path destinationFile = rootLocation.resolve(
 					Paths.get(file.getOriginalFilename()))
 					.normalize().toAbsolutePath();
 			if (!destinationFile.getParent().equals(rootLocation.toAbsolutePath())) {
 				// This is a security check
-				throw new RuntimeException("µLªk¤W¶ÇÀÉ®×©ó¥Ø«e¸ê®Æ§¨¥~");
+				throw new RuntimeException("ç„¡æ³•ä¸Šå‚³æª”æ¡ˆæ–¼ç›®å‰è³‡æ–™å¤¾å¤–");
 			}
 			try (InputStream inputStream = file.getInputStream()) {
 				Files.copy(inputStream, destinationFile,
@@ -85,7 +85,7 @@ public class ArticleService {
 			}
 		}
 		catch (IOException e) {
-			throw new RuntimeException("¤W¶Ç¥¢±Ñ", e);
+			throw new RuntimeException("ä¸Šå‚³å¤±æ•—", e);
 		}
 	}
 	
@@ -96,7 +96,7 @@ public class ArticleService {
 				.map(rootLocation::relativize);
 		}
 		catch (IOException e) {
-			throw new RuntimeException("Åª¨ú¥¢±Ñ", e);
+			throw new RuntimeException("è®€å–å¤±æ•—", e);
 		}
 
 	}
@@ -113,12 +113,12 @@ public class ArticleService {
 				return resource;
 			}
 			else {
-				throw new RuntimeException("µLªkÅª¨úÀÉ®×¡G" + filename);
+				throw new RuntimeException("ç„¡æ³•è®€å–æª”æ¡ˆï¼š" + filename);
 
 			}
 		}
 		catch (MalformedURLException e) {
-			throw new RuntimeException("µLªkÅª¨úÀÉ®×¡G" + filename, e);
+			throw new RuntimeException("ç„¡æ³•è®€å–æª”æ¡ˆï¼š" + filename, e);
 		}
 	}
 	
@@ -134,7 +134,7 @@ public class ArticleService {
 			Files.createDirectories(rootLocation);
 		}
 		catch (IOException e) {
-			throw new RuntimeException("µLªkªì©l¤Æ¤W¶Ç¸ê®Æ§¨", e);
+			throw new RuntimeException("ç„¡æ³•åˆå§‹åŒ–ä¸Šå‚³è³‡æ–™å¤¾", e);
 		}
 	}
 
