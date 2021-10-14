@@ -22,6 +22,7 @@ import com.syscut.service.ArticleService;
 public class ArticleController {
 	
 	private final ArticleService articleService;
+	
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 	
 	  @Autowired
@@ -41,7 +42,7 @@ public class ArticleController {
 		return "all-tags";
 	}
 	
-	  @RequestMapping("/js-map")
+	  @RequestMapping("/article")
 	 public String jsmap(
 			  @RequestParam(name="id")Integer id,
 			  Model model  

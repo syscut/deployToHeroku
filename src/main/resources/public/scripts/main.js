@@ -165,4 +165,31 @@ $(document).ready(()=>{
 	$('.hidden').css('display','inline-flex');
 });
 
+  $('input[name="file"]').change(()=>{
+    const [file] = $('input[name="file"]').prop('files');
+    if(file){
+	let fileSize = file.size;
+      if (Math.abs(fileSize) > 1153433600){
+	    $('input[name="file"]').val("");
+        $('.file_size').text('');
+        return $('.file_name').text("檔案超過1G，無法上傳");
+      }
+
+    $('.file_name').text("已選擇："+file.name);
+      if (Math.abs(fileSize) < 1024) {
+        return $('.file_size').text('檔案大小：'+fileSize + ' B');
+      }
+
+    let u = -1;
+	
+    const units = ['kB', 'MB', 'GB'];
+
+      do{
+	    fileSize /= 1024;
+        ++u;
+      }while((Math.round(Math.abs(fileSize) * 1000)) / 1000 >= 1024 && u < units.length - 1);
+      $('.file_size').text('檔案大小：'+fileSize.toFixed(1) + ' ' + units[u]);
+   }
+  })
+
 });

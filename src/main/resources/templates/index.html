@@ -15,7 +15,7 @@
           <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
           </svg> 文章列表</h3>
       <ul th:each="t: ${href}">
-       <li><a class="text-decoration-none" th:href="@{/js-map?id={id}(id=${t.id})}" ><span th:text="${t.date}"></span><br><span th:text="${t.title}"></span></a></li>
+       <li><a class="text-decoration-none" th:href="@{/article?id={id}(id=${t.id})}" ><span th:text="${t.date}"></span><br><span th:text="${t.title}"></span></a></li>
       </ul>
     </div>
     
@@ -50,6 +50,7 @@
 </svg> 站長專用</h6>
       <ul>
         <li><a class="text-decoration-none" href="/newarticle">寫新文章</a></li>
+        <li><a class="text-decoration-none" href="/uploadfiles">上傳檔案</a></li>
       </ul>
     </div>
     </div>

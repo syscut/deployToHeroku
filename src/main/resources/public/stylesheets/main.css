@@ -131,3 +131,15 @@ img.counter{
 	margin-right:7px;
 	margin-bottom: 6px;
 }
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  top: 10px;
+}
+.upload-btn-wrapper input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

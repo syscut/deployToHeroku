@@ -1,15 +1,29 @@
 package com.syscut;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+
+import com.syscut.service.ArticleService;
+import com.syscut.service.StorageProperties;
 
 
-@SpringBootApplication  //說明這是一個Spring Boot
+@SpringBootApplication  
+@EnableConfigurationProperties(StorageProperties.class)
 public class Main {
  
   public static void main(String[] args) throws Exception {
-	  //啟動Spring
+	  
     SpringApplication.run(Main.class, args);
   }
+  
+  @Bean
+	CommandLineRunner init(ArticleService articleService) {
+		return (args) -> {
+			articleService.init();
+		};
+	}
   
 }
