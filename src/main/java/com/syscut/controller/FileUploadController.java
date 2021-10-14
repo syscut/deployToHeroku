@@ -72,7 +72,7 @@ public class FileUploadController {
 			return "redirect:/uploadfiles";
 		}
 		redirectAttributes.addFlashAttribute("message",
-				"檔案" + file.getOriginalFilename() + "上傳成功!");
+				"檔案" + file.getOriginalFilename() + "上傳成\功!");
 
 		return "redirect:/uploadfiles";
 	}
@@ -83,7 +83,7 @@ public class FileUploadController {
 		//Resource file = storageService.loadAsResource(filename);
 		articleService.deleteAll(properties.getLocation()+"/"+filename);
 		//model.addAttribute("message",properties.getLocation());
-		redirectAttributes.addFlashAttribute("message",filename+"刪除成功");
+		redirectAttributes.addFlashAttribute("message",filename+"刪除成\功");
 		return "redirect:/uploadfiles";
 		
 //		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
