@@ -80,8 +80,21 @@ public class ArticleService {
 				// This is a security check
 				throw new RuntimeException("無法上傳檔案於目前資料夾外");
 			}
+			
+			File targetFile = new File(destinationFile.toString());
+			String fileName = destinationFile.getFileName().toString();
+			String fileNameWithOutExtString = fileName.replaceFirst("[.][^.]+$", "");
+			String fileExt = fileName.substring(fileName.lastIndexOf("."));
+			int n = 1;
+			while(targetFile.exists() && !targetFile.isDirectory()) {
+				
+				fileName = fileNameWithOutExtString + "(" + n + ")" + fileExt;
+				targetFile.renameTo(new File(destinationFile.getParent()+"/"+fileName));
+				n ++;
+			}
+			
 			try (InputStream inputStream = file[i].getInputStream()) {
-				Files.copy(inputStream, destinationFile,
+				Files.copy(inputStream, targetFile.toPath(),
 					StandardCopyOption.REPLACE_EXISTING);
 			}
 			}
