@@ -166,16 +166,26 @@ $(document).ready(()=>{
 });
 
   $('input[name="file"]').change(()=>{
-    const [file] = $('input[name="file"]').prop('files');
-    if(file){
-	let fileSize = file.size;
+    const file = $('input[name="file"]').prop('files');
+    if(file.length){
+	
+    let fs = $(file).map((index,arr)=>arr.size);
+    let fileSize = 0;
+	for(let i = 0;i<fs.length;i++){
+		fileSize += fs[i];
+	}
       if (Math.abs(fileSize) > 1153433600){
 	    $('input[name="file"]').val("");
         $('.file_size').text('');
         return $('.file_name').text("檔案超過1G，無法上傳");
       }
-
-    $('.file_name').text("已選擇："+file.name);
+    let fn = $(file).map((index,arr)=>arr.name);
+    let fileName = "",comma = "";
+	for(let i = 0;i<fn.length;i++){
+		fileName += comma+fn[i];
+		comma = "、 ";
+	}
+    $('.file_name').text("已選擇："+fileName);
       if (Math.abs(fileSize) < 1024) {
         return $('.file_size').text('檔案大小：'+fileSize + ' B');
       }

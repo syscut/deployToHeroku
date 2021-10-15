@@ -67,21 +67,23 @@ public class ArticleService {
 	    return articleRepository.countAllTags();
 	}
 	
-	public void store(MultipartFile file) {
+	public void store(MultipartFile file[]) {
 		try {
-			if (file.isEmpty()) {
+			if (file[0].isEmpty()) {
 				throw new RuntimeException("無法上傳空檔案");
 			}
+			for(int i = 0;i <file.length;i++) {
 			Path destinationFile = rootLocation.resolve(
-					Paths.get(file.getOriginalFilename()))
+					Paths.get(file[i].getOriginalFilename()))
 					.normalize().toAbsolutePath();
 			if (!destinationFile.getParent().equals(rootLocation.toAbsolutePath())) {
 				// This is a security check
 				throw new RuntimeException("無法上傳檔案於目前資料夾外");
 			}
-			try (InputStream inputStream = file.getInputStream()) {
+			try (InputStream inputStream = file[i].getInputStream()) {
 				Files.copy(inputStream, destinationFile,
 					StandardCopyOption.REPLACE_EXISTING);
+			}
 			}
 		}
 		catch (IOException e) {

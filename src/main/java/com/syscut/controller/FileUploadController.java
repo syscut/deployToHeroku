@@ -1,6 +1,8 @@
 package com.syscut.controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,26 +55,31 @@ public class FileUploadController {
 
 	@GetMapping("/files/{filename:.+}")
 	@ResponseBody
-	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws IOException {
 
 		Resource file = articleService.loadAsResource(filename);
-		
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
+				"attachment; filename=\""+file.getFilename()+"\"").body(file);
 	}
 
 	@PostMapping("/upload")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file,
+	public String handleFileUpload(@RequestParam("file") MultipartFile file[],
 			RedirectAttributes redirectAttributes) {
-
+      
 		try {
 			articleService.store(file);
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message",e.getMessage());
 			return "redirect:/uploadfiles";
 		}
+		String fileName = "";
+		String comma = "";
+		for(int i = 0;i<file.length;i++) {
+			fileName += comma+file[i].getOriginalFilename();
+			comma = "、 ";
+		}
 		redirectAttributes.addFlashAttribute("message",
-				"檔案" + file.getOriginalFilename() + "上傳成成功!");
+				"檔案" + fileName + "上傳成成功!");
 
 		return "redirect:/uploadfiles";
 	}
