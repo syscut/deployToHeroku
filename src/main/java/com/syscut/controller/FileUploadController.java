@@ -1,6 +1,8 @@
 package com.syscut.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.accept.MappingMediaTypeFileExtensionResolver;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class FileUploadController {
 	private final ArticleService articleService;
 
 	StorageProperties properties = new StorageProperties();
-	
+	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	@Autowired
 	public FileUploadController(ArticleService articleService) {
@@ -40,6 +41,7 @@ public class FileUploadController {
 
 	@RequestMapping("/uploadfiles")
 	public String listUploadedFiles(Model model) throws IOException {
+		
 		
 		model.addAttribute("files", articleService.loadAll().map(
 				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
@@ -50,6 +52,16 @@ public class FileUploadController {
 				path -> path.getFileName().toString())
 				.collect(Collectors.toList()));
         
+        model.addAttribute("info",articleService.loadAll().map(
+				path -> {
+					try {
+						Date dt = new Date(articleService.loadAsResource(path.toString()).lastModified());
+						return sdFormat.format(dt);
+					} catch (IOException e) {
+						return e;
+					}
+				}).collect(Collectors.toList()));
+        
 		return "upload";
 	}
 
@@ -59,20 +71,17 @@ public class FileUploadController {
 
 		Resource file = articleService.loadAsResource(filename);
 		String fileName = file.getFilename();
-		MediaType mediaType = MediaType.IMAGE_PNG;
+		MediaType mediaType = MediaType.TEXT_HTML;
 		String fileExt = fileName.substring(fileName.lastIndexOf("."));
-		//File f = new File(file.getURI());
-		//HttpHeaders header = new HttpHeaders();
-		//header.add(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=\""+file.getFilename()+"\"");
-		//Path path = Paths.get(f.getAbsolutePath());
 		
-		//ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-		
-		//return ResponseEntity.ok().headers(header).contentLength(f.length()).contentType(MediaType.IMAGE_PNG).body(resource);
 		if(fileExt.equals(".pdf")) {
 			mediaType =  MediaType.APPLICATION_PDF;
-		}else if(fileExt.equals(".txt")) {
-			mediaType =  MediaType.TEXT_HTML;
+		}else if(fileExt.equals(".jpeg")||fileExt.equals(".bmp")||fileExt.equals(".jpg")||fileExt.equals(".jpe")||fileExt.equals(".tif")||fileExt.equals(".tiff")) {
+			mediaType = MediaType.IMAGE_JPEG;
+		}else if(fileExt.equals(".png")) {
+			mediaType = MediaType.IMAGE_PNG;
+		}else if(fileExt.equals(".gif")) {
+			mediaType = MediaType.IMAGE_GIF;
 		}
 		
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,

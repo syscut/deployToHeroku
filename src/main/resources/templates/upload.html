@@ -15,9 +15,10 @@
 	    <label class="file_name"></label>&emsp;<label class="file_size"></label>
 		<input class="btn btn-outline-info" type="submit" value="上傳" />
 	</form>
+	<p></p>
 	    <ul>
-			<li th:each="file : ${files}">
-				<a th:href="${file}" th:text="${names[fileStat.index]}"></a>&emsp;<a class="badge bg-danger text-decoration-none" th:href="@{/del/{n}(n=${names[fileStat.index]})}">刪除</a>
+			<li class="mt-2" th:each="file : ${files}">
+				<a th:href="${file}" th:text="${names[fileStat.index]}"></a>&emsp;上傳日期：<lable th:text="${info[fileStat.index]}"></lable>&emsp;<a class="badge bg-danger text-decoration-none" th:href="@{/del/{n}(n=${names[fileStat.index]})}">刪除</a>
 			</li>
 		</ul>
   </div>
