@@ -1,10 +1,9 @@
 target/
-.env
-.idea/
-*.iml
-.classpath
-.project
+.metadata/
 .settings/
+.classpath
+.factorypath
+.project
 docs/tmp/
 docs/syscut-herokuapp-com/
 docs/deploying-spring-boot-apps/
